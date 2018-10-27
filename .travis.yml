@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- node
+before_deploy:
+- npm run build
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: emiliano.luis.sanchez@gmail.com
+  api_key:
+    secure: n6WXQG/UmLyQNqzmzdlv068vgkvCjmys1tIVTEAv9Ijn/wksDNM8y269lorlh8HzuPEDGdUpRhVSiIrtNIpsM1zNfdv1J7jMfNF8OfMj3xcLNSTOilYdSH7EBtiWZDK2pU1XD3B+2N0F9qCSQSInSpVu+PZWkNoOloCVlzcQW8lM6qvA4SswR03BgOCNhL996HSFCcmUayGzOQ3IqF02VGz+r2tCIFmma3NcLRQiqXAoPL2TXFmfPARwLYKL3BKtAnoaWHu3MzKIiQMV0iifSCEmK2yXO+6yPyy8lxdXkod5hR49JwORZTdJSBBJHDaW00gfcnwOJV4UYwED0843A+yuXEK3NM/TfL8xoxb6x/IO+21e6SHeDuYMzN3CzjFOxwlqg6YcOLcxSmMMBLXPu0Fyg5S/zdF4BL8VCBxs4T7n5JT+v5RZYmpE5rx8xhOLm+EpjHY/WGPg+IaGSxoKApMNNr7Dm0iI+6KJX8iq4L1JLjk6CJu00ciBXqJgaMrWEJKHdlmrea6LiY0r0kFtwNeCUzCUkNEWRh5Hq+mznxq95lnfTm+Kz7o6DLWn2xTZPBYYc17kPb8pAl/9HOvhi3H4upOsRY85J6wu87hCTKq62TuR4MGWxFZVIXkel4ssBXeGBlbSI0noDAZKlhhwstyVJVbemqfrZeqMUmpMBXM=
+  on:
+    tags: true
+    repo: EmilianoSanchez/adversarial-search-js
