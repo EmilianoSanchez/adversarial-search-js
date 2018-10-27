@@ -1,0 +1,25 @@
+{
+  "name": "adversarial-search-js",
+  "version": "0.0.1",
+  "description": "A NPM package that implements adversarial search algoritms.",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmilianoSanchez/adversarial-search-js.git"
+  },
+  "keywords": [
+    "npm",
+    "node",
+	"javascript",
+    "adversarial search"    
+  ],
+  "author": "Luis Emiliano Sanchez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EmilianoSanchez/adversarial-search-js/issues"
+  },
+  "homepage": "https://github.com/EmilianoSanchez/adversarial-search-js#readme"
+}
