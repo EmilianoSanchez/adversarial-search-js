@@ -5,3 +5,7 @@ lib/
 
 # Dependency directories
 node_modules/
+
+# Istanbul test coverage
+.nyc_output/
+coverage/
