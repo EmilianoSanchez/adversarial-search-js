@@ -4,6 +4,7 @@
   "description": "A NPM package that implements adversarial search algoritms.",
   "main": "build/index.js",
   "scripts": {
+	"build": "babel ./src -d ./lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,13 +14,17 @@
   "keywords": [
     "npm",
     "node",
-	"javascript",
-    "adversarial search"    
+    "javascript",
+    "adversarial search"
   ],
   "author": "Luis Emiliano Sanchez",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/EmilianoSanchez/adversarial-search-js/issues"
   },
-  "homepage": "https://github.com/EmilianoSanchez/adversarial-search-js#readme"
+  "homepage": "https://github.com/EmilianoSanchez/adversarial-search-js#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  }
 }

@@ -2,3 +2,6 @@
 .idea/
 .vscode/
 lib/
+
+# Dependency directories
+node_modules/
