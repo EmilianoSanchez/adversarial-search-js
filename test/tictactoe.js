@@ -1,6 +1,4 @@
-"use strict";
-
-var _ = require("lodash");
+const _ = require("lodash");
 
 const checkLines = [
   [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }],
@@ -44,23 +42,28 @@ const ticTacToeGame = {
   },
 
   terminalTest: function (state) {
-    return checkLines.some(elem => {
+    for (let elem of checkLines) {
       if (state.board[elem[0].x][elem[0].y] != -1 &&
-          state.board[elem[0].x][elem[0].y] == state.board[elem[1].x][elem[1].y] &&
-          state.board[elem[0].x][elem[0].y] == state.board[elem[2].x][elem[2].y]){
-        state.winner=state.board[elem[0].x][elem[0].y];
+        state.board[elem[0].x][elem[0].y] == state.board[elem[1].x][elem[1].y] &&
+        state.board[elem[0].x][elem[0].y] == state.board[elem[2].x][elem[2].y]) {
+        state.winner = state.board[elem[0].x][elem[0].y];
         return true;
-      }else
-        return false;
-    });
+      }
+    }
+    for (let x = 0; x < 3; x++)
+      for (let y = 0; y < 3; y++)
+        if (state.board[x][y] == -1)
+          return false;
+    state.winner = -1;
+    return true;
   },
 
   // 1: win, 0: loss, 0.5: draw
   utilityFunction: function (state, player) {
-    if(state.winner==undefined)
+    if (state.winner == undefined || state.winner == -1)
       return DRAW;
-    else{
-      if(player==state.winner)
+    else {
+      if (player == state.winner)
         return WIN;
       else
         return LOSE;
@@ -68,4 +71,4 @@ const ticTacToeGame = {
   }
 };
 
-export { ticTacToeGame , DRAW, WIN, LOSE};
+export { ticTacToeGame, DRAW, WIN, LOSE };
