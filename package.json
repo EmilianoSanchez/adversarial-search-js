@@ -1,6 +1,6 @@
 {
   "name": "adversarial-search-js",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A NPM package that implements adversarial search algoritms.",
   "main": "build/index.js",
   "scripts": {
