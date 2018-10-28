@@ -44,5 +44,8 @@
       "pre-commit": "npm run lint",
       "pre-push": "npm run test"
     }
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
   }
 }
