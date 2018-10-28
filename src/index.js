@@ -4,7 +4,7 @@ const digitsOnly = /^\d+$/;
 // function to mask digits into US phone format
 function maskUSPhone(phone) {
   // returning null when getting null, undefined, or an object that is no string as a parameter
-  if (!phone || typeof phone !== 'string') {
+  if (!phone || typeof phone !== "string") {
     return null;
   }
 
