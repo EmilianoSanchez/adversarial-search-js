@@ -1,6 +1,5 @@
 import * as assert from "assert";
-import Game from "../src/game";
-import MinimaxSearch from "../src/minimaxSearch";
+import { Game, MinimaxSearch } from "../src/index";
 import { ticTacToeGame, DRAW } from "./tictactoe";
 
 let tttGame = Game.create(ticTacToeGame);

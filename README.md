@@ -1,2 +1,2 @@
 # adversarial-search-js
-A NPM package that implements adversarial search algoritms.
+A NPM package that provides adversarial search algoritms for games.
