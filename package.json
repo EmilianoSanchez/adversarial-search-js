@@ -4,6 +4,7 @@
   "description": "A NPM package that provides adversarial search algorithms for games.",
   "main": "lib/index.js",
   "scripts": {
+    "build": "npm run build-modules && npm run build-bundle",
     "build-bundle": "webpack -p",
     "build-modules": "babel ./src -d ./lib",
     "lint": "eslint ./src",
@@ -48,7 +49,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "npm run test && npm run build-modules && npm run build-bundle"
+      "pre-push": "npm run test"
     }
   },
   "dependencies": {
