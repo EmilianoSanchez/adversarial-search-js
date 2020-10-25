@@ -1,17 +1,18 @@
-class MinimaxSearch {
+import { IGame, IState, IStrategy } from "./types";
+
+class MinimaxSearch<S extends IState<P>, A, P> implements IStrategy<S, A> {
 
   /**
    * Creates a new MinimaxSearch object for a given game.
    */
-  constructor(game) {
-    this.game = game;
+  constructor(private game: IGame<S, A, P>) {
   }
 
   /**
  * Returns the action which appears to be the best at the given state.
  */
-  makeDecision(state) {
-    let result = null;
+  makeDecision(state: S) {
+    let result = undefined;
     let resultValue = -Infinity;
     let playerId = this.game.getPlayer(state);
     for (let action of this.game.getActions(state)) {
@@ -25,7 +26,7 @@ class MinimaxSearch {
   }
 
   // returns an utility value
-  minValue(state, playerId) {
+  minValue(state: S, playerId: P) {
     if (this.game.isTerminal(state))
       return this.game.getUtility(state, playerId);
     let value = +Infinity;
@@ -36,7 +37,7 @@ class MinimaxSearch {
   }
 
   // returns an utility value
-  maxValue(state, playerId) {
+  maxValue(state: S, playerId: P) {
     if (this.game.isTerminal(state))
       return this.game.getUtility(state, playerId);
     let value = -Infinity;

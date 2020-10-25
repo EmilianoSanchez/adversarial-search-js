@@ -2,14 +2,31 @@
   "name": "adversarial-search-js",
   "version": "0.2.2",
   "description": "A NPM package that provides adversarial search algorithms for games.",
-  "main": "lib/index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types",
+  "files": [
+    "README.md",
+    "CONTRIBUTORS-GUIDE.md",
+    "LICENSE",
+    "CHANGES.txt",
+    "cjs",
+    "esm",
+    "src",
+    "types"
+  ],
   "scripts": {
-    "build": "npm run build-modules && npm run build-bundle",
-    "build-bundle": "webpack -p",
-    "build-modules": "babel ./src -d ./lib",
-    "lint": "eslint ./src",
-    "prepublishOnly": "npm run build",
-    "test": "nyc mocha --require @babel/register"
+    "check": "npm run check:lint && npm run check:type",
+    "check:lint": "eslint src --ext .js,.ts",
+    "check:type": "tsc --noEmit",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:types && npm run build:umd",
+    "build:types": "rimraf esm-tsc/* types/* && tsc -m es2015 -t es5 --outDir esm-tsc -d true --declarationDir types",
+    "build:esm": "rimraf esm && cross-env NODE_ENV=esm babel ./src -d esm --ignore 'src/**/__tests__/*','src/**/types.ts' --extensions '.ts'",
+    "build:cjs": "rimraf cjs && cross-env NODE_ENV=cjs babel ./src -d cjs --ignore 'src/**/__tests__/*','src/**/types.ts' --extensions '.ts'",
+    "build-umd": "webpack --config webpack.dev.js && webpack --config webpack.prod.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -28,31 +45,30 @@
   },
   "homepage": "https://github.com/EmilianoSanchez/adversarial-search-js#readme",
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/register": "^7.5.5",
-    "babel-loader": "^8.0.6",
-    "eslint": "^5.8.0",
-    "husky": "^1.1.2",
-    "mocha": "^5.2.0",
-    "nyc": "^14.1.1",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/lodash": "^4.14.162",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.9.0",
+    "husky": "^3.1.0",
+    "jest": "^26.4.2",
+    "lodash": "^4.17.20",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.2",
+    "ts-loader": "^8.0.7",
+    "typescript": "^4.0.3",
+    "webpack": "^5.2.0",
+    "webpack-cli": "^4.1.0"
   },
   "nyc": {
     "reporter": [
       "lcov",
       "text"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
-    }
-  },
-  "dependencies": {
-    "lodash": "^4.17.13"
   }
 }

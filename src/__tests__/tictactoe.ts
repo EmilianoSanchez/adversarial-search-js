@@ -1,4 +1,6 @@
-const _ = require("lodash");
+import { IGameObject, IState } from '../types';
+
+const _ = require('lodash');
 
 const checkLines = [
   [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }],
@@ -15,21 +17,36 @@ const DRAW = 0.5;
 const WIN = 1.0;
 const LOSE = 0.0;
 
-const ticTacToeGame = {
+type TTTBoardValue = -1 | 0 | 1
+type TTTBoardRow = [TTTBoardValue, TTTBoardValue, TTTBoardValue]
+type TTTBoard = [TTTBoardRow, TTTBoardRow, TTTBoardRow]
+
+export interface TTTState extends IState {
+  board: TTTBoard
+  winner?: number
+}
+
+export interface TTTAction {
+  player: number
+  x: 0 | 1 | 2
+  y: 0 | 1 | 2
+}
+
+const ticTacToeGame: IGameObject<TTTState, TTTAction> = {
 
   initialState: {
     currentPlayer: 0,
     board: [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
   },
 
-  players: ["O", "X"],
+  players: [0, 1],
 
   actionFunction: function (state) {
-    let actions = [];
+    let actions: TTTAction[] = [];
     for (let x = 0; x < 3; x++)
       for (let y = 0; y < 3; y++)
         if (state.board[x][y] == -1)
-          actions.push({ x: x, y: y, player: state.currentPlayer });
+          actions.push({ x: x as 0 | 1 | 2, y: y as 0 | 1 | 2, player: state.currentPlayer });
     return actions;
   },
 
