@@ -1,6 +1,6 @@
 import { IGame, IGameObject, IState } from './types';
 
-class Game<S extends IState<P>, A, P> implements IGameObject<S, A, P>, IGame<S, A, P> {
+export default class Game<S extends IState<P>, A, P> implements IGameObject<S, A, P>, IGame<S, A, P> {
 
   constructor(
     public initialState: S,
@@ -43,5 +43,3 @@ class Game<S extends IState<P>, A, P> implements IGameObject<S, A, P>, IGame<S, 
     return this.utilityFunction(state, player);
   }
 }
-
-export default Game;

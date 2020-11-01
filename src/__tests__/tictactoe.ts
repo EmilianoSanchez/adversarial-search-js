@@ -1,7 +1,5 @@
 import { IGameObject, IState } from '../types';
 
-const _ = require('lodash');
-
 const checkLines = [
   [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }],
   [{ x: 1, y: 0 }, { x: 1, y: 1 }, { x: 1, y: 2 }],
@@ -22,12 +20,13 @@ type TTTBoardRow = [TTTBoardValue, TTTBoardValue, TTTBoardValue]
 type TTTBoard = [TTTBoardRow, TTTBoardRow, TTTBoardRow]
 
 export interface TTTState extends IState {
+  currentPlayer: 0 | 1
   board: TTTBoard
   winner?: number
 }
 
 export interface TTTAction {
-  player: number
+  player: 0 | 1
   x: 0 | 1 | 2
   y: 0 | 1 | 2
 }
@@ -51,7 +50,9 @@ const ticTacToeGame: IGameObject<TTTState, TTTAction> = {
   },
 
   resultFunction: function (state, action) {
-    let result = _.cloneDeep(state);
+    // reduce state with action, keeping input state immutable
+    let result: TTTState = { ...state, board: [...state.board] };
+    result.board[action.x] = [...state.board[action.x]];
     result.board[action.x][action.y] = action.player;
     result.currentPlayer++;
     result.currentPlayer %= 2;

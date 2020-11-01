@@ -26,7 +26,7 @@ class MinimaxSearch<S extends IState<P>, A, P> implements IStrategy<S, A> {
   }
 
   // returns an utility value
-  minValue(state: S, playerId: P) {
+  private minValue(state: S, playerId: P) {
     if (this.game.isTerminal(state))
       return this.game.getUtility(state, playerId);
     let value = +Infinity;
@@ -37,7 +37,7 @@ class MinimaxSearch<S extends IState<P>, A, P> implements IStrategy<S, A> {
   }
 
   // returns an utility value
-  maxValue(state: S, playerId: P) {
+  private maxValue(state: S, playerId: P) {
     if (this.game.isTerminal(state))
       return this.game.getUtility(state, playerId);
     let value = -Infinity;
