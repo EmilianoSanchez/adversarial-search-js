@@ -1,6 +1,5 @@
 import readline from 'readline';
-import { IState, IGame } from '../types';
-import { IPlayer } from './types';
+import { IState, IGame, IPlayer } from '../types';
 
 export default abstract class NodeConsolePlayer<S extends IState, A> implements IPlayer<S, A> {
 

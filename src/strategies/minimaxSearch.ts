@@ -1,11 +1,11 @@
-import { IGame, IState, IStrategy } from './types';
+import { IGame, IState, IStrategy } from '../types';
 
 export default class MinimaxSearch<S extends IState, A> implements IStrategy<S, A> {
 
   /**
    * Creates a new MinimaxSearch object for a given game.
    */
-  constructor(private game: IGame<S, A>, private maxDepth = 5, private heuristic = (state: S) => 0.5) {
+  constructor(public game: IGame<S, A>, private maxDepth = 5, private heuristic = (state: S) => 0.0) {
   }
 
   /**

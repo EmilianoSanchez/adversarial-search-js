@@ -1,6 +1,5 @@
-import MinimaxSearch from '../minimaxSearch';
-import { IState, IGame, IStrategy } from '../types';
-import { IPlayer } from './types';
+import MinimaxSearch from '../strategies/minimaxSearch';
+import { IState, IGame, IStrategy, IPlayer } from '../types';
 
 export default class IAPlayer<S extends IState, A> implements IPlayer<S, A> {
 

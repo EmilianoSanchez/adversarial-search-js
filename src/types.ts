@@ -1,4 +1,5 @@
-// @TODO if `P` of number type is the only use case, remove generic `P`
+/** Core and IA */
+
 export interface IState {
   currentPlayer: number
 }
@@ -18,6 +19,7 @@ export interface IGame<S extends IState, A> {
 }
 
 export interface IStrategy<S extends IState, A> {
+  game: IGame<S, A>
   makeDecision(state: S): A | undefined
 }
 
@@ -28,4 +30,11 @@ export interface IGameObject<S extends IState, A> {
   resultFunction: (state: S, action: A) => S
   terminalTest: (state: S) => boolean
   utilityFunction: (state: S, player: number) => number
+}
+
+/** Input/Output */
+
+export interface IPlayer<S, A> {
+  makeDecision(currentState: S): Promise<A>
+  notifyNewState(newState: S): Promise<void>
 }

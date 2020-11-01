@@ -23,10 +23,12 @@
     "build:types": "rimraf esm-tsc/* types/* && tsc -m es2015 -t es5 --outDir esm-tsc -d true --declarationDir types",
     "build:esm": "rimraf esm && cross-env NODE_ENV=esm babel ./src -d esm --ignore 'src/**/__tests__/*','src/**/types.ts' --extensions '.ts'",
     "build:cjs": "rimraf cjs && cross-env NODE_ENV=cjs babel ./src -d cjs --ignore 'src/**/__tests__/*','src/**/types.ts' --extensions '.ts'",
-    "build-umd": "webpack --config webpack.dev.js && webpack --config webpack.prod.js",
+    "build:umd": "webpack --config webpack.dev.js && webpack --config webpack.prod.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "prepublishOnly": "npm run build"
+    "publish:rc": "npm publish --tag rc",
+    "publish:stable": "npm publish",
+    "prepublishOnly": "npm run check && npm run build"
   },
   "repository": {
     "type": "git",
@@ -57,10 +59,11 @@
     "eslint": "^7.9.0",
     "husky": "^3.1.0",
     "jest": "^26.4.2",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.4.2",
     "ts-loader": "^8.0.7",
+    "ts-node": "^9.0.0",
     "typescript": "^4.0.3",
     "webpack": "^5.2.0",
     "webpack-cli": "^4.1.0"
@@ -70,5 +73,11 @@
       "lcov",
       "text"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check:type",
+      "pre-push": "npm run test"
+    }
   }
 }
