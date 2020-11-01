@@ -10,7 +10,7 @@ describe('TicTacToe tests', () => {
   });
 
   test('num of players is equal to 2', () => {
-    expect(tttGame.getPlayers().length).toBe(2);
+    expect(tttGame.getNumPlayers()).toBe(2);
   });
 
   test('The current player of the initial state is the first player (index #0)', () => {

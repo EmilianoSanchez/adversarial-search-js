@@ -1,26 +1,26 @@
 import { IGame, IGameObject, IState } from './types';
 
-export default class Game<S extends IState<P>, A, P> implements IGameObject<S, A, P>, IGame<S, A, P> {
+export default class Game<S extends IState, A> implements IGameObject<S, A>, IGame<S, A> {
 
   constructor(
     public initialState: S,
-    public players: P[],
+    public numPlayers: number,
     public actionFunction: (state: S) => A[],
     public resultFunction: (state: S, action: A) => S,
     public terminalTest: (state: S) => boolean,
-    public utilityFunction: (state: S, player: P) => number) {
+    public utilityFunction: (state: S, player: number) => number) {
   }
 
-  static create<S extends IState<P>, A, P>(game: IGameObject<S, A, P>) {
-    return new Game(game.initialState, game.players, game.actionFunction, game.resultFunction, game.terminalTest, game.utilityFunction);
+  static create<S extends IState, A, P>(game: IGameObject<S, A>) {
+    return new Game(game.initialState, game.numPlayers, game.actionFunction, game.resultFunction, game.terminalTest, game.utilityFunction);
   }
 
   getInitialState() {
     return this.initialState;
   }
 
-  getPlayers() {
-    return this.players;
+  getNumPlayers() {
+    return this.numPlayers;
   }
 
   getPlayer(state: S) {
@@ -39,7 +39,7 @@ export default class Game<S extends IState<P>, A, P> implements IGameObject<S, A
     return this.terminalTest(state);
   }
 
-  getUtility(state: S, player: P) {
+  getUtility(state: S, player: number) {
     return this.utilityFunction(state, player);
   }
 }

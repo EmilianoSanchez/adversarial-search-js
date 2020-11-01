@@ -38,7 +38,7 @@ const ticTacToeGame: IGameObject<TTTState, TTTAction> = {
     board: [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]
   },
 
-  players: [0, 1],
+  numPlayers: 2,
 
   actionFunction: function (state) {
     let actions: TTTAction[] = [];
