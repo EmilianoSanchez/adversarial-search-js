@@ -10,7 +10,7 @@
 /esm
 /cjs
 /types
-/esm-tsc
+/umd
 
 ## coverage info
 /coverage
