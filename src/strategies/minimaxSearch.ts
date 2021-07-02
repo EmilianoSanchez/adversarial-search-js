@@ -5,23 +5,23 @@ export default class MinimaxSearch<S extends IState, A> implements IStrategy<S, 
   /**
    * Creates a new MinimaxSearch object for a given game.
    */
-  constructor(public game: IGame<S, A>, private maxDepth = 5, private heuristic = (state: S) => 0.0) {
+  constructor(public game: IGame<S, A>, private maxDepth = 5, private heuristic: (state: S) => number = () => 0.0) {
   }
 
   /**
    * Returns the action which appears to be the best at the given state.
    */
-  makeDecision(state: S) {
-    let result = undefined;
+  makeDecision(state: S): A | undefined {
+    let result;
     let resultValue = -Infinity;
-    let playerId = this.game.getPlayer(state);
-    for (let action of this.game.getActions(state)) {
-      let value = this.minValue(this.game.getResult(state, action), playerId, 0);
+    const playerId = this.game.getPlayer(state);
+    this.game.getActions(state).forEach(action => {
+      const value = this.minValue(this.game.getResult(state, action), playerId, 0);
       if (value > resultValue) {
         result = action;
         resultValue = value;
       }
-    }
+    });
     return result;
   }
 
@@ -31,9 +31,9 @@ export default class MinimaxSearch<S extends IState, A> implements IStrategy<S, 
     if (depth >= this.maxDepth) return this.heuristic(state);
 
     let value = +Infinity;
-    for (let action of this.game.getActions(state))
-      value = Math.min(value,
-        this.maxValue(this.game.getResult(state, action), playerId, depth + 1));
+    this.game.getActions(state).forEach(action => {
+      value = Math.min(value, this.maxValue(this.game.getResult(state, action), playerId, depth + 1));
+    });
     return value;
   }
 
@@ -43,9 +43,9 @@ export default class MinimaxSearch<S extends IState, A> implements IStrategy<S, 
     if (depth >= this.maxDepth) return this.heuristic(state);
 
     let value = -Infinity;
-    for (let action of this.game.getActions(state))
-      value = Math.max(value,
-        this.minValue(this.game.getResult(state, action), playerId, depth + 1));
+    this.game.getActions(state).forEach(action => {
+      value = Math.max(value, this.minValue(this.game.getResult(state, action), playerId, depth + 1));
+    });
     return value;
   }
 }

@@ -17,14 +17,14 @@ export default abstract class NodeConsolePlayer<S extends IState, A> implements 
       const actions = this.game.getActions(state);
       this.printActionsToChoose(actions);
 
-      this.rl.question("Choose action by index? ", (input: string) => {
+      this.rl.question('Choose action by index? ', (input: string) => {
         let index = 0;
         try {
           index = parseInt(input);
           if (isNaN(index) || index < 0 || index >= actions.length) throw new Error();
         } catch (e) {
           index = 0;
-          console.log('invalid input. Defaulting to action 0.')
+          console.log('invalid input. Defaulting to action 0.');
         }
         res(actions[index]);
       });

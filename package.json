@@ -1,6 +1,6 @@
 {
   "name": "adversarial-search-js",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A NPM package that provides adversarial search algorithms for games.",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -23,7 +23,7 @@
     "build:esm": "rimraf esm types && tsc -m es2015 -t es5 --outDir esm -d true --declarationDir types",
     "build:cjs": "rimraf cjs && tsc -m commonjs -t es5 --outDir cjs -d false",
     "build:umd": "rollup --config rollup.config.js",
-    "test": "jest",
+    "test": "jest src",
     "test:coverage": "jest --coverage",
     "publish:rc": "npm publish --tag rc",
     "publish:stable": "npm publish",
@@ -47,7 +47,10 @@
   "homepage": "https://github.com/EmilianoSanchez/adversarial-search-js#readme",
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.0.0",
-    "eslint": "^7.9.0",
+    "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "eslint": "^7.30.0",
     "husky": "^3.1.0",
     "jest": "^27.0.5",
     "rimraf": "^3.0.2",

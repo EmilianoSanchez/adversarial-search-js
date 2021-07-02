@@ -1,4 +1,4 @@
-import { IGame, IState, IStrategy } from "../types";
+import { IGame, IState, IStrategy } from '../types';
 
 export function chooseRandomFactory<S extends IState, A>(game: IGame<S, A>): IStrategy<S, A> {
   return {
@@ -7,6 +7,6 @@ export function chooseRandomFactory<S extends IState, A>(game: IGame<S, A>): ISt
       const actions = game.getActions(state);
       return actions.length ? actions[Math.floor(Math.random() * actions.length)] : undefined;
     }
-  }
+  };
 
 }

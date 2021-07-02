@@ -10,7 +10,7 @@ export default class IAPlayer<S extends IState, A> implements IPlayer<S, A> {
     return new Promise((res) => {
       const action = this.algorithm.makeDecision(state);
       res(action);
-    })
+    });
   }
   notifyNewState(newState: S) {
     // no-operation
