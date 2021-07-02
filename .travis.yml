@@ -2,13 +2,16 @@ language: node_js
 node_js:
 - node
 before_deploy:
+- npm run check
+- npm run test
 - npm run build
-deploy:
-  skip_cleanup: true
-  provider: npm
-  email: emiliano.luis.sanchez@gmail.com
-  api_key:
-    secure: Qsr/GzbZFNGxfB0FwUds1h+KO9u4Qno0tXqRlyLKJ+0Ag1eAsjjQwUqhicAhrKyRRwz0RbUv2pMNhA+Y0hML7WVbIEXo8pWVxzCjdZrRS1cqp6oalJE+RU43uoZAbdeSB0dcsIQX8pKgqKkmHy/GBYLF6tkRwKN0KtyFYFTz5qKkP/o3X29npatHzm42893lo+2OfPkU5RdHnX9ligWgsAZ8xYD9dMdZs6l+pMi3Cenhu9r+FPeNtKTeaEw+Y9IjHA8aX9yqa9nY3+D83Hxy/mYK5XkcLlp85uZG2WZ/MsqXWLXrgdkgF93Bq5aaLJEyu5sEDedSp2g5v192bFe67Aad77NMTv/SQgeJog/LoK9QKdLhCf3DdbMtBoO8J4+mSWTLCYIWK526HU7Y0kyST68kYQyu4P9NV/3xz4SgruGQ72P23o3xw18mhWZX/pfbv1rwvC4Wm5bPEUsjC2sN2/eCcUwq+c4pqeqxV1LbekYzWs5/QUntU+D2Vjq6jXtr+U2hZLdOFT31CWTWb44U3jnI1OrBe2km7Dswwh74GyEjqPZ6fV5GeiMp9XnNGeiL4KgW9md5r4QMJtOf9FdiCE4M+GQC0MO78MHVHVSvcsH1PdPjfwlfbeqNbFBc909Q4G04QT4HD/0rr0aJ6lNeojFCXVVR45SK/eKsPYpESyY=
-  on:
-    tags: true
-    repo: EmilianoSanchez/adversarial-search-js
+
+# deploy:
+#   skip_cleanup: true
+#   provider: npm
+#   email: emiliano.luis.sanchez@gmail.com
+#   api_key:
+#     secure: Qsr/GzbZFNGxfB0FwUds1h+KO9u4Qno0tXqRlyLKJ+0Ag1eAsjjQwUqhicAhrKyRRwz0RbUv2pMNhA+Y0hML7WVbIEXo8pWVxzCjdZrRS1cqp6oalJE+RU43uoZAbdeSB0dcsIQX8pKgqKkmHy/GBYLF6tkRwKN0KtyFYFTz5qKkP/o3X29npatHzm42893lo+2OfPkU5RdHnX9ligWgsAZ8xYD9dMdZs6l+pMi3Cenhu9r+FPeNtKTeaEw+Y9IjHA8aX9yqa9nY3+D83Hxy/mYK5XkcLlp85uZG2WZ/MsqXWLXrgdkgF93Bq5aaLJEyu5sEDedSp2g5v192bFe67Aad77NMTv/SQgeJog/LoK9QKdLhCf3DdbMtBoO8J4+mSWTLCYIWK526HU7Y0kyST68kYQyu4P9NV/3xz4SgruGQ72P23o3xw18mhWZX/pfbv1rwvC4Wm5bPEUsjC2sN2/eCcUwq+c4pqeqxV1LbekYzWs5/QUntU+D2Vjq6jXtr+U2hZLdOFT31CWTWb44U3jnI1OrBe2km7Dswwh74GyEjqPZ6fV5GeiMp9XnNGeiL4KgW9md5r4QMJtOf9FdiCE4M+GQC0MO78MHVHVSvcsH1PdPjfwlfbeqNbFBc909Q4G04QT4HD/0rr0aJ6lNeojFCXVVR45SK/eKsPYpESyY=
+#   on:
+#     tags: true
+#     repo: EmilianoSanchez/adversarial-search-js

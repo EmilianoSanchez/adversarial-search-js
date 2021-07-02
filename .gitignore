@@ -1,14 +1,19 @@
-# leave everything else untouched
-.idea/
-.vscode/
-lib/
-dist/
-
-# Dependency directories
-node_modules/
-
-# Istanbul test coverage
-.nyc_output/
-coverage/
-
+.idea
 .DS_Store
+**/npm-debug.log
+/.idea
+/.sonar
+**/node_modules
+/.vscode
+
+## transpiled code
+/esm
+/cjs
+/types
+/umd
+
+## coverage info
+/coverage
+
+# @TODO remove eventually
+/examples
